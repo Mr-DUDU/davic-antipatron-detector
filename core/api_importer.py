@@ -12,8 +12,12 @@ def obtener_code_smells():
     }
     response = requests.get(url, params=params, headers=headers)
     if response.status_code == 200:
-        return response.json()
+        print("Conexión exitosa a la API de SonarCloud")
+        data = response.json()
     else:
         response.raise_for_status()  # Lanza un error si la solicitud falla
-    data = response.json()
-    return data
+
+    issues = data.get("issues", [])
+    sqc_codes = [issue["rule"] for issue in issues if "rule" in issue]
+
+    return sqc_codes

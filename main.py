@@ -1,16 +1,13 @@
 from core.api_importer import obtener_code_smells
-import csv
-
-def cargar_diccionario_equivalencias(ruta_csv):
-    equivalencias = {}
-    with open(ruta_csv, mode='r', encoding='utf-8-sig') as archivo:
-        lector = csv.DictReader(archivo, delimiter=';')
-        print("Encabezados detectados:", lector.fieldnames)
-        for fila in lector:
-            print("Fila:", fila)
-    return equivalencias
 
 if __name__ == "__main__":
-    path = "./davic/data/code_smells_translation.csv"
-    cargar_diccionario_equivalencias(path)
+    print("Obteniendo Code Smells desde SonarQube Cloud...\n")
 
+    sqc_codes = obtener_code_smells()
+
+    if not sqc_codes:
+        print("⚠️ No se encontraron code smells o hubo un problema en la extracción.")
+    else:
+        print(f"✅ Se encontraron {len(sqc_codes)} code smells únicos:")
+        for i, code in enumerate(sqc_codes, 1):
+            print(f"{i:02d}: {code}")
