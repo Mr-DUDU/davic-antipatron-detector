@@ -1,0 +1,70 @@
+﻿SQC_Code;Moha_Compatible
+python:S7507;Method No Parameter
+python:S2737;Method No Parameter
+python:S6799;Spaghetti Code Definition
+python:S6969;Antipatron Rendimiento
+python:S5720;Spaghetti Code Definition
+python:S6908;Antipatron Rendimiento
+python:S6911;ClassGlobalVariable
+python:S6918;Multiple Interface
+python:S6740;Spaghetti Code Definition
+python:S6553;Antipatron SQL
+python:S6659;Spaghetti Code Definition
+python:S5361;Antipatron Rendimiento
+python:S1700;Procedural names
+python:S7483;Spaghetti Code Definition
+python:S1940;Spaghetti Code Definition
+pythonbugs:S2589;Spaghetti Code Definition
+python:S5806;Spaghetti Code Definition
+python:S6397;Procedural names
+python:S101;Procedural names
+python:S3776;Long Method
+python:S139;Spaghetti Code Definition
+python:S5727;Spaghetti Code Definition
+pythonenterprise:S7196;Long Method
+python:S3358;Spaghetti Code Definition
+python:S134;Long Method
+python:FunctionComplexity;Long Method
+python:S2761;Spaghetti Code Definition
+python:S116;Procedural names
+python:S113;Spaghetti Code Definition
+python:S104;Multiple Interface
+python:S1542;Procedural names
+python:S6540;Method No Parameter
+python:S5717;Spaghetti Code Definition
+python:S1186;Method No Parameter
+python:S4144;Spaghetti Code Definition
+python:S3516;No Polymorphism
+python:S1142;Spaghetti Code Definition
+python:S138;Long Method
+python:S3801;Spaghetti Code Definition
+python:S107;Long Method
+python:S7505;Spaghetti Code Definition
+python:S6973;Antipatron Rendimiento
+python:S3626;Spaghetti Code Definition
+python:LineLength;Long Method
+python:S117;Procedural names
+python:S1066;Spaghetti Code Definition
+python:S100;Procedural names
+python:S2638;No Polymorphism
+python:S1845;Procedural names
+python:S1578;Procedural names
+python:S6742;Long Method
+pythonenterprise:S7469;Procedural names
+python:S1110;Spaghetti Code Definition
+python:S5843;Spaghetti Code Definition
+python:S6019;Method No Parameter
+python:S5899;test smells
+python:S5918;test smells
+python:NoSonar;test smells
+python:S4487;Field Private
+python:S1854;Spaghetti Code Definition
+python:S1144;Field Private
+python:S1172;Method No Parameter
+python:S1481;Swiss Army Knife Definition
+python:S3985;Field Private
+python:S5603;Multiple Interface
+python:S5685;Spaghetti Code Definition
+python:S7504;Antipatron Rendimiento
+python:S6735;Antipatron SQL
+python:S2208;Multiple Interface
