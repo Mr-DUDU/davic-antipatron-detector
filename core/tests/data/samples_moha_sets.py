@@ -1,23 +1,165 @@
 # Caso completo: contiene el code smell núcleo y un reforzador
-sqc_codes_SAK_COMPLETE = ["python:S6918", "python:S104", "python:S5603", "python:S2208", "python:S1481"]
+sqc_codes_SAK_COMPLETE = [
+    {
+        "rule": "python:S6918",
+        "severity": "MAJOR",
+        "archivo": "modulo/dummy_file_0.py",
+        "linea": 10,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_0"
+    },
+    {
+        "rule": "python:S104",
+        "severity": "MINOR",
+        "archivo": "modulo/dummy_file_1.py",
+        "linea": 11,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_1"
+    },
+    {
+        "rule": "python:S5603",
+        "severity": "MAJOR",
+        "archivo": "modulo/dummy_file_2.py",
+        "linea": 12,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_2"
+    },
+    {
+        "rule": "python:S2208",
+        "severity": "MINOR",
+        "archivo": "modulo/dummy_file_3.py",
+        "linea": 13,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_3"
+    },
+    {
+        "rule": "python:S1481",
+        "severity": "MAJOR",
+        "archivo": "modulo/dummy_file_4.py",
+        "linea": 14,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_4"
+    }
+]
 
 # Caso parcial: solo contiene el reforzador, no se detecta antipatrón
-sqc_codes_SAK_ONLY_REINFORCER = ["python:S1481"]
+sqc_codes_SAK_ONLY_REINFORCER = [
+    {
+        "rule": "python:S1481",
+        "severity": "MAJOR",
+        "archivo": "modulo/dummy_file_0.py",
+        "linea": 10,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_0"
+    }
+]
 
-# Caso vacío: ningún code smell relevante
-sqc_codes_SAK_EMPTY = ["python:S9999", "python:S7507", "python:S6019"]
 
 # Caso completo: contiene el code smell núcleo y un reforzador
-sqc_codes_FC_COMPLETE = ["python:S4487", "python:S1144", "python:S5603", "python:S6397", "pythonenterprise:S7469"]
+sqc_codes_FC_COMPLETE = [
+    {
+        "rule": "python:S4487",
+        "severity": "MAJOR",
+        "archivo": "modulo/dummy_file_0.py",
+        "linea": 10,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_0"
+    },
+    {
+        "rule": "python:S1144",
+        "severity": "MINOR",
+        "archivo": "modulo/dummy_file_1.py",
+        "linea": 11,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_1"
+    },
+    {
+        "rule": "python:S5603",
+        "severity": "MAJOR",
+        "archivo": "modulo/dummy_file_2.py",
+        "linea": 12,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_2"
+    },
+    {
+        "rule": "python:S6397",
+        "severity": "MINOR",
+        "archivo": "modulo/dummy_file_3.py",
+        "linea": 13,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_3"
+    },
+    {
+        "rule": "pythonenterprise:S7469",
+        "severity": "MAJOR",
+        "archivo": "modulo/dummy_file_4.py",
+        "linea": 14,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_4"
+    }
+]
 
-# Caso vacío: ningún code smell relevante
-sqc_codes_FC_EMPTY = ["python:S9999", "python:S1700"]
 
 # Caso completo: contiene el code smell núcleo y un reforzador
-sqc_codes_SC_COMPLETE = ["python:S3776", "python:S6540", "python:S6911", "python:S3516", "python:S4144"]
+sqc_codes_SC_COMPLETE = [
+    {
+        "rule": "python:S138",
+        "severity": "MAJOR",
+        "archivo": "modulo/dummy_file_0.py",
+        "linea": 10,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_0"
+    },
+    {
+        "rule": "python:S6019",
+        "severity": "MINOR",
+        "archivo": "modulo/dummy_file_1.py",
+        "linea": 11,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_1"
+    },
+    {
+        "rule": "python:S6911",
+        "severity": "MAJOR",
+        "archivo": "modulo/dummy_file_2.py",
+        "linea": 12,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_2"
+    },
+    {
+        "rule": "python:S3516",
+        "severity": "MINOR",
+        "archivo": "modulo/dummy_file_3.py",
+        "linea": 13,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_3"
+    }
+]
 
 # Caso parcial: solo contiene el reforzador, no se detecta antipatrón
-sqc_codes_SC_ONLY_REINFORCER = ["python:S4144"]
+sqc_codes_SC_ONLY_REINFORCER = [
+    {
+        "rule": "python:S4144",
+        "severity": "MAJOR",
+        "archivo": "modulo/dummy_file_0.py",
+        "linea": 10,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_0"
+    }
+]
 
 # Caso vacío: ningún code smell relevante
-sqc_codes_SC_EMPTY = ["python:S9999", "python:S7507", "python:S6019"]
+sqc_codes_EMPTY = [
+    {
+        "rule": "python:S9999",
+        "severity": "MAJOR",
+        "archivo": "modulo/dummy_file_0.py",
+        "linea": 10,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_0"
+    },
+    {
+        "rule": "python:S7507",
+        "severity": "MINOR",
+        "archivo": "modulo/dummy_file_1.py",
+        "linea": 11,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_1"
+    },
+    {
+        "rule": "python:S5603",
+        "severity": "MAJOR",
+        "archivo": "modulo/dummy_file_2.py",
+        "linea": 12,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_2"
+    },
+    {
+        "rule": "python:S6019",
+        "severity": "MINOR",
+        "archivo": "modulo/dummy_file_3.py",
+        "linea": 13,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_3"
+    }
+]

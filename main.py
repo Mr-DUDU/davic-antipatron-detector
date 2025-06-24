@@ -7,50 +7,53 @@ if __name__ == "__main__":
     # Ruta al CSV de equivalencias
     ruta_csv = "davic/data/code_smells_translation.csv"
 
-    # 1. Cargar el diccionario de equivalencias
+    # Cargar el diccionario de equivalencias
     equivalencias = cargar_diccionario_equivalencias(ruta_csv)
 
-    # PRUEBA: Feature 2 con datos quemados (Swiss Army Knife - Complete)
-    # 3. Ejecutar traducción
-    moha_set, trazabilidad = traducir_code_smells(sqc_codes_SC_EMPTY, equivalencias)
+    # PRUEBA 1: con datos quemados en nuevo formato
+
+    # Feature 2: Traducción
+    moha_set, trazabilidad = traducir_code_smells(sqc_codes_SC_COMPLETE, equivalencias)
 
     # Mostrar resultados
     print("✅ Set de categorías Moha detectadas:")
     print(moha_set)
 
-    print("\n📌 Trazabilidad:")
-    for code, moha in trazabilidad:
-        print(f"- {code} → {moha}")
+    print("\n📌 Trazabilidad (completa):")
+    for code_smell in trazabilidad:
+        print(f"- {code_smell['rule']} → {code_smell['moha_equivalent']} "
+              f"(archivo: {code_smell['archivo']}, línea: {code_smell['linea']})")
 
-    # 4. Analizar antipatrón
+    # Feature 3: Análisis de antipatrones
     resultado = analizar_antipatrones(moha_set)
-    print(type(resultado))
-
+    print("\n📊 Resultado del análisis:")
+    print(resultado)
 
     '''
-    print("Obteniendo Code Smells desde SonarQube Cloud...\n")
-    # Paso 1: Obtener lista de códigos SQC desde SonarCloud
-    sqc_codes = obtener_code_smells()
-    if not sqc_codes:
-        print("⚠️ No se encontraron code smells o hubo un problema en la extracción.")
+    # PRUEBA 2: con datos de la API
+    print("🛰️  Conectando con SonarQube Cloud...\n")
+    datos_code_smells = obtener_code_smells()
+
+    if not datos_code_smells:
+        print("⚠️  No se encontraron code smells o hubo un error en la conexión.")
     else:
+        print(f"✅ Se extrajeron {len(datos_code_smells)} issues desde la API.")
 
-        print(f"✅ Se encontraron {len(sqc_codes)} code smells únicos:")
-        for i, code in enumerate(sqc_codes, 1):
-            print(f"{i:02d}: {code}")
+        # Traducir los code smells
+        traducciones, trazabilidad = traducir_code_smells(datos_code_smells, equivalencias)
 
-        print("\nCargando diccionario de equivalencias...\n")
-
-        # Paso 2: Cargar el diccionario de equivalencias Moha desde CSV
-        ruta_csv = "davic/data/code_smells_translation.csv"
-        moha_compatible = cargar_diccionario_equivalencias(ruta_csv)
-
-        # Paso 3: Traducir los SQC_Code usando el diccionario cargado
-        traducciones, trazabilidad = traducir_code_smells(sqc_codes, moha_compatible)
-
-        # Paso 4: Mostrar resultados
-        print("\n✅ Traducciones Moha encontradas:")
+        print("\n🧠 Traducciones a categorías Moha:")
         print(traducciones)
-        print(trazabilidad)
 
+        print("\n📌 Trazabilidad enriquecida:")
+        for entrada in trazabilidad:
+            print(f"- {entrada['rule']} → {entrada['moha_equivalent']}")
+            print(f"  ↳ Archivo: {entrada['archivo']} (Línea {entrada['linea']})")
+            print(f"  ↳ Severidad: {entrada['severity']}")
+            print(f"  ↳ URL: {entrada['url']}")
+            print()
+
+        # 4. Analizar antipatrón
+        resultado = analizar_antipatrones(traducciones)
+        print(resultado)
     '''

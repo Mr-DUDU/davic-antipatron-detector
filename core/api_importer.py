@@ -18,6 +18,18 @@ def obtener_code_smells():
         response.raise_for_status()  # Lanza un error si la solicitud falla
 
     issues = data.get("issues", [])
-    sqc_codes = [issue["rule"] for issue in issues if "rule" in issue]
+    sqc_data = []
+    for issue in issues:
+        try:
+            sqc_data.append({
+                "rule": issue["rule"],
+                "severity": issue["severity"],
+                "archivo": issue["component"].split(":", 1)[1],
+                "linea": issue.get("line", "N/A"),
+                "url": f"https://sonarcloud.io/project/issues?id={issue['project']}&open={issue['key']}"
+            })
+        except KeyError as e:
+            print(f"⚠️ Issue malformado: {e}")
+            continue
 
-    return sqc_codes
+    return sqc_data

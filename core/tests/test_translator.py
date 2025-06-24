@@ -11,21 +11,45 @@ def test_cargar_diccionario_equivalencias():
     assert equivalencias["python:S5918"] == "test smells"
 
 def test_traducir_code_smells():
-    sqc_code = ["python:S7507", "python:S2737", "python:S9999"]
+    sqc_data = [
+        {
+            "rule": "python:S7507",
+            "severity": "MAJOR",
+            "archivo": "app/module1.py",
+            "linea": 42,
+            "url": "https://sonarcloud.io/project/issues?id=Project&open=abc123"
+        },
+        {
+            "rule": "python:S2737",
+            "severity": "MINOR",
+            "archivo": "app/module2.py",
+            "linea": 10,
+            "url": "https://sonarcloud.io/project/issues?id=Project&open=def456"
+        },
+        {
+            "rule": "python:S9999",  # ← no está en el diccionario, se ignora
+            "severity": "INFO",
+            "archivo": "app/module3.py",
+            "linea": 88,
+            "url": "https://sonarcloud.io/project/issues?id=Project&open=zzz999"
+        }
+    ]
+
     moha_compatible = {
         "python:S7507": "Method No Parameter",
         "python:S2737": "Method No Parameter"
     }
 
-    traducciones, trazabilidad = traducir_code_smells(sqc_code, moha_compatible)
+    traducciones, trazabilidad = traducir_code_smells(sqc_data, moha_compatible)
 
     assert isinstance(traducciones, set)
     assert isinstance(trazabilidad, list)
 
-    # Debe haber una sola traducción de tipo Moha (aunque dos SQC apunten a ella)
+    # Solo se deben registrar las equivalencias válidas
     assert traducciones == {"Method No Parameter"}
+    assert len(trazabilidad) == 2
 
-    # Trazabilidad debe incluir solo los dos códigos válidos
-    assert ("python:S7507", "Method No Parameter") in trazabilidad
-    assert ("python:S2737", "Method No Parameter") in trazabilidad
-    assert not any("python:S9999" in t for t in trazabilidad)
+    for item in trazabilidad:
+        assert "moha_equivalent" in item
+        assert item["moha_equivalent"] == "Method No Parameter"
+        assert item["rule"] in moha_compatible
