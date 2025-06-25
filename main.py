@@ -2,6 +2,7 @@ from core.api_importer import obtener_code_smells
 from core.translator import cargar_diccionario_equivalencias, traducir_code_smells
 from core.analyzer import analizar_antipatrones
 from core.tests.data.samples_moha_sets import *
+from core.reporter import generar_reporte_xml
 
 if __name__ == "__main__":
     # Ruta al CSV de equivalencias
@@ -20,15 +21,18 @@ if __name__ == "__main__":
     print(moha_set)
 
     print("\n📌 Trazabilidad (completa):")
-    for code_smell in trazabilidad:
-        print(f"- {code_smell['rule']} → {code_smell['moha_equivalent']} "
-              f"(archivo: {code_smell['archivo']}, línea: {code_smell['linea']})")
+    print(trazabilidad)
 
     # Feature 3: Análisis de antipatrones
     resultado = analizar_antipatrones(moha_set)
     print("\n📊 Resultado del análisis:")
     print(resultado)
 
+    # Generar XML (Feature 4)
+    ruta_xml = "reporte_demo.xml"  # Puedes cambiar el nombre si quieres
+    generar_reporte_xml(resultado, trazabilidad, ruta_xml)
+
+    print(f"✅ XML generado exitosamente en: {ruta_xml}")
     '''
     # PRUEBA 2: con datos de la API
     print("🛰️  Conectando con SonarQube Cloud...\n")

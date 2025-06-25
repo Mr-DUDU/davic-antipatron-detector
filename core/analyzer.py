@@ -5,7 +5,6 @@ def analizar_antipatrones(traducciones):
 
     detectados = []
     posibles = []
-    otros = []
 
     conocidos = set()  # Acumulará todas las reglas evaluadas (para hallar aislados)
 

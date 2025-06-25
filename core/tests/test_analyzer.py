@@ -28,7 +28,7 @@ def test_no_detecta_SAK_solo_reforzador():
 def test_no_detecta_SAK_nada():
     path = "davic/data/code_smells_translation.csv"
     equivalencias = cargar_diccionario_equivalencias(path)
-    traducciones, trazabilidad = traducir_code_smells(sqc_codes_SAK_EMPTY, equivalencias)
+    traducciones, trazabilidad = traducir_code_smells(sqc_codes_EMPTY, equivalencias)
 
     resultado = analizar_antipatrones(traducciones)
 

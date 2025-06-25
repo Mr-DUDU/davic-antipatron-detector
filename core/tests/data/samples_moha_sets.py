@@ -89,7 +89,7 @@ sqc_codes_FC_COMPLETE = [
 ]
 
 
-# Caso completo: contiene el code smell núcleo y un reforzador
+# Caso completo: contiene antiaptron Spaghetti Code y un reforzador de SAK
 sqc_codes_SC_COMPLETE = [
     {
         "rule": "python:S138",
@@ -118,6 +118,20 @@ sqc_codes_SC_COMPLETE = [
         "archivo": "modulo/dummy_file_3.py",
         "linea": 13,
         "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_3"
+    },
+    {
+        "rule": "python:S4487",
+        "severity": "MINOR",
+        "archivo": "modulo/dummy_file_3.py",
+        "linea": 13,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_3"
+    },
+    {
+        "rule": "pythonenterprise:S7469",
+        "severity": "MINOR",
+        "archivo": "modulo/dummy_file_3.py",
+        "linea": 13,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_3"
     }
 ]
 
@@ -129,6 +143,13 @@ sqc_codes_SC_ONLY_REINFORCER = [
         "archivo": "modulo/dummy_file_0.py",
         "linea": 10,
         "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_0"
+    },
+    {
+        "rule": "python:S1481",
+        "severity": "MINOR",
+        "archivo": "modulo/dummy_file_1.py",
+        "linea": 11,
+        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_1"
     }
 ]
 
@@ -147,19 +168,5 @@ sqc_codes_EMPTY = [
         "archivo": "modulo/dummy_file_1.py",
         "linea": 11,
         "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_1"
-    },
-    {
-        "rule": "python:S5603",
-        "severity": "MAJOR",
-        "archivo": "modulo/dummy_file_2.py",
-        "linea": 12,
-        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_2"
-    },
-    {
-        "rule": "python:S6019",
-        "severity": "MINOR",
-        "archivo": "modulo/dummy_file_3.py",
-        "linea": 13,
-        "url": "https://sonarcloud.io/project/issues?id=DummyProject&open=issue_key_3"
     }
 ]
