@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>DAVIC - Detectando...</title>
+</head>
+<body>
+    <h1>🔎 DAVIC está analizando tu proyecto...</h1>
+    <h2>Conexion EXISITOSA</h2>
+    <p><strong>Proyecto:</strong> {{ component_key }}</p>
+    <p><strong>Token:</strong> {{ token }}</p>
+    <p><strong>Lenguaje:</strong> {{ language }}</p>
+    <p><strong>BRUTOS:</strong> {{ data }}</p>
+
+    <p>Esto es solo una simulación visual. En la siguiente etapa aparecerán los resultados.</p>
+    <form action="/analizar" method="POST">
+      <!-- Puedes ocultar o volver a mandar los mismos datos -->
+      <input type="hidden" name="component_key" value="{{ component_key }}">
+      <input type="hidden" name="token" value="{{ token }}">
+      <input type="hidden" name="language" value="{{ language }}">
+      <input type="hidden" name="data" value="{{ data }}">
+        <h2>¿Quieres ejecutar el análisis de antipatrones?</h2>
+        <p>Si estás listo, haz clic en el botón a continuación para continuar.</p>
+      >
+      <button type="submit">Ejecutar análisis de antipatrones</button>
+    </form>
+
+    <a href="/">⬅ Volver al inicio</a>
+</body>
+</html>

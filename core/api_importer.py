@@ -1,21 +1,24 @@
 import requests
 
-def obtener_code_smells():
+def obtener_code_smells(component_key, token):
     url = "https://sonarcloud.io/api/issues/search"
     params= {
-        "componentKeys": "Mr-DUDU_PoliPerritos2",
+        "componentKeys": component_key,
         "types": "CODE_SMELL",
         "ps": 500
     }
     headers = {
-        "Authorization": "dcd1ed5e56c26f39ca2c660060d331558899c8c8"
+        "Authorization": token
     }
     response = requests.get(url, params=params, headers=headers)
-    if response.status_code == 200:
-        print("Conexión exitosa a la API de SonarCloud")
-        data = response.json()
-    else:
-        response.raise_for_status()  # Lanza un error si la solicitud falla
+    if response.status_code != 200:
+        raise Exception("No se pudo conectar a SonarCloud.")
+
+    data = response.json()
+    # Validación REAL: ¿hay issues?
+    if not data.get("issues"):
+        raise Exception("Conexión exitosa, pero no se encontraron code smells. Verifica el componente o el token.")
+
 
     issues = data.get("issues", [])
     sqc_data = []

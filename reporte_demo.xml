@@ -1,2 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<reporte><introduccion><lenguaje>python</lenguaje></introduccion><seccion_antipatrones><antipatron nombre="Functional Decomposition" estado="detectado"><reglas_detectadas><regla>Field Private</regla><regla>Procedural names</regla></reglas_detectadas></antipatron><antipatron nombre="Spaghetti Code" estado="detectado"><reglas_detectadas><regla>ClassGlobalVariable</regla><regla>Long Method</regla><regla>Method No Parameter</regla><regla>No Polymorphism</regla></reglas_detectadas></antipatron></seccion_antipatrones></reporte>

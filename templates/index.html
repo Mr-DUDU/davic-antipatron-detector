@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>DAVIC - Análisis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <h1>DAVIC - Analizador de Antipatrones</h1>
+
+    <form action="/api_importer" method="POST">
+        <label for="component">🔧 Nombre del Proyecto (componentKey):</label><br>
+        <input type="text" id="component" name="component_key" required><br><br>
+
+        <label for="token">🔑 Token de Autorización:</label><br>
+        <input type="text" id="token" name="token" required><br><br>
+
+        <label for="language">💻 Lenguaje:</label><br>
+        <select name="language" id="language" required>
+            <option value="python" selected>Python</option>
+        </select><br><br>
+        {% if mensaje %}
+            <div class="alert alert-warning" role="alert">
+                {{ mensaje }}
+            </div>
+        {% endif %}
+        <button type="submit">Verificar proyecto</button>
+    </form>
+</body>
+</html>

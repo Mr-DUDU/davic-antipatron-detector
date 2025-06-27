@@ -1,4 +1,4 @@
-from davic.data.antipattern_rules import ANTIPATTERN_RULES
+from data.antipattern_rules import ANTIPATTERN_RULES
 
 def analizar_antipatrones(traducciones):
     lenguaje = "python"  # ← Esto luego puede venir desde la UI

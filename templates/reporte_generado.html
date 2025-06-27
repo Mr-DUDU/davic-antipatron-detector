@@ -1,0 +1,33 @@
+<h2>📊 Resultado del análisis de antipatrones</h2>
+
+<p><strong>Lenguaje:</strong> {{ resultado.lenguaje }}</p>
+
+<h3>✅ Antipatrones detectados:</h3>
+<ul>
+  {% for atp in resultado.detectados %}
+    <li>{{ atp }}</li>
+  {% else %}
+    <li>Ninguno</li>
+  {% endfor %}
+</ul>
+
+<h3>⚠️ Posibles antipatrones:</h3>
+<ul>
+  {% for atp in resultado.posibles %}
+    <li>{{ atp }}</li>
+  {% else %}
+    <li>Ninguno</li>
+  {% endfor %}
+</ul>
+
+<h3>🔍 Code smells aislados (sin relación directa):</h3>
+<ul>
+  {% for cs in resultado.aislados %}
+    <li>{{ cs }}</li>
+  {% else %}
+    <li>Ninguno</li>
+  {% endfor %}
+</ul>
+
+<h2>📥 Descargar reporte XML</h2>
+<a href="{{ url_for('static', filename='reports/reporte_demo.xml') }}" download>Descargar reporte_demo.xml</a>

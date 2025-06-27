@@ -1,4 +1,4 @@
-from davic.data.antipattern_rules import ANTIPATTERN_RULES
+from data.antipattern_rules import ANTIPATTERN_RULES
 import xml.etree.ElementTree as ET
 
 def generar_reporte_xml(resultado, trazabilidad, ruta_salida):
@@ -42,6 +42,21 @@ def generar_reporte_xml(resultado, trazabilidad, ruta_salida):
 
     if not resultado["detectados"] and not resultado["posibles"]:
         ET.SubElement(seccion1, "antipatron", estado="limpio")
+
+    # ⬇ Sección II: Code Smells detectados (detallados)
+    seccion2 = ET.SubElement(root, "seccion_code_smells")
+
+    for item in trazabilidad:
+        ET.SubElement(
+            seccion2,
+            "code_smell",
+            rule=item["rule"],
+            archivo=item["archivo"],
+            linea=str(item["linea"]),
+            severity=item["severity"],
+            moha=item["moha_equivalent"],
+            url=item["url"]
+        )
 
     # ⬇ Guardar archivo
     tree = ET.ElementTree(root)
