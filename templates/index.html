@@ -1,30 +1,133 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>DAVIC - Análisis</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <h1>DAVIC - Analizador de Antipatrones</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DAVIC - Inicio</title>
+    <!-- Bootstrap 5 CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts: Montserrat -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tu CSS personalizado -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='favicon.png') }}"
+    />
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <!-- Header -->
+      <header class="d-flex align-items-center justify-content-between px-4">
+        <span class="app-title">D.A.V.I.C</span>
+      </header>
 
-    <form action="/api_importer" method="POST">
-        <label for="component">🔧 Nombre del Proyecto (componentKey):</label><br>
-        <input type="text" id="component" name="component_key" required><br><br>
-
-        <label for="token">🔑 Token de Autorización:</label><br>
-        <input type="text" id="token" name="token" required><br><br>
-
-        <label for="language">💻 Lenguaje:</label><br>
-        <select name="language" id="language" required>
-            <option value="python" selected>Python</option>
-        </select><br><br>
-        {% if mensaje %}
-            <div class="alert alert-warning" role="alert">
-                {{ mensaje }}
+      <!-- Cuerpo principal -->
+      <main>
+        <div class="container-fluid h-100">
+          <div class="row h-100 align-items-center">
+            <!-- Lateral izquierdo -->
+            <div
+              class="col h-100 lateral-bg d-flex justify-content-center align-items-center"
+            >
+              <!-- Puedes poner algo aquí si quieres, o dejar vacío -->
             </div>
-        {% endif %}
-        <button type="submit">Verificar proyecto</button>
-    </form>
-</body>
+            <!-- Centro -->
+            <div
+              class="col-5 h-100 d-flex justify-content-center align-items-center bg-white"
+            >
+              <div class="centro-card w-100">
+                <h2 class="mb-3 text-center">Bienvenido a DAVIC</h2>
+                <p class="lead text-center">
+                  Plataforma de análisis y detección de antipatrones en
+                  proyectos académicos.<br />
+                  Selecciona una opción en el menú para empezar.
+                </p>
+
+                <form
+                  action="/api_importer"
+                  method="POST"
+                  class="p-3 border rounded bg-white shadow"
+                >
+                  <div class="mb-3">
+                    <label for="component" class="form-label"
+                      >🔧 Nombre del Proyecto:</label
+                    >
+                    <input
+                      type="text"
+                      id="component"
+                      name="component_key"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="token" class="form-label"
+                      >🔑 Token de Autorización:</label
+                    >
+                    <input
+                      type="text"
+                      id="token"
+                      name="token"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="language" class="form-label"
+                      >💻 Lenguaje del proyecto:</label
+                    >
+                    <select
+                      name="language"
+                      id="language"
+                      class="form-select"
+                      required
+                    >
+                      <option value="python" selected>Python</option>
+                    </select>
+                  </div>
+
+                  {% if mensaje %}
+                  <div class="alert alert-warning" role="alert">
+                    {{ mensaje }}
+                  </div>
+                  {% endif %}
+
+                  <button type="submit" class="btn btn-primary w-100">
+                    Verificar proyecto
+                  </button>
+                </form>
+              </div>
+            </div>
+            <!-- Lateral derecho -->
+            <div
+              class="col h-100 lateral-bg d-flex justify-content-center align-items-center"
+            >
+              <!-- Puedes poner algo aquí si quieres, o dejar vacío -->
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="d-flex align-items-center justify-content-center">
+        <span>© 2025 DAVIC - Desarrollado por David Averos</span>
+      </footer>
+    </div>
+
+    <!-- Bootstrap JS (opcional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

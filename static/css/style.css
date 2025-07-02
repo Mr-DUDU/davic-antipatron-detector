@@ -1,0 +1,71 @@
+html, body, .main-wrapper {
+    height: 100%;
+    min-height: 100vh;
+}
+.app-title {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 2.6rem;
+    letter-spacing: 2px;
+    color: #fff;
+    font-weight: 700;
+}
+:root {
+    --davic-blue: #1976d2; /* Puedes cambiar este color según tu logo */
+    --lateral-grey: #e7e4e4;
+}
+
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+header {
+    flex: 0 0 15%;
+    min-height: 80px;
+    background: var(--davic-blue) !important;
+    color: #fff !important;
+    border-bottom: 1.5px solid #e0e3e7;  /* borde sutil abajo */
+    box-shadow: 0 2px 4px rgba(25, 118, 210, 0.03); /* sombra muy suave opcional */
+}
+
+main {
+    flex: 1 0 75%;
+    background: #fff;
+    padding: 0; /* sin padding para ajustar bien el grid */
+}
+.lateral-bg {
+    background: var(--lateral-grey);
+    height: 100vh; /* ayuda a estirar visualmente toda la columna */
+}
+.bg-white {
+    background: #fff !important;
+}
+/* Centro del main */
+.centro-card {
+    border-radius: 2rem;      /* bordes bien circulares */
+    border: 1.5px solid #e0e3e7;
+    box-shadow: 0 4px 16px rgba(25, 118, 210, 0.07);
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 480px; /* ajustable al gusto */
+}
+
+/* Para responsividad en pantallas pequeñas */
+@media (max-width: 991px) {
+    .col-5 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .lateral-bg {
+        display: none;
+    }
+}
+
+footer {
+    flex: 0 0 8%;
+    min-height: 50px;
+    background: #6e6d6d;
+    color: #fff;
+    border-top: 1.5px solid #e0e3e7;  /* borde sutil arriba */
+    box-shadow: 0 -2px 4px rgba(25, 118, 210, 0.02); /* sombra muy suave opcional */
+}
