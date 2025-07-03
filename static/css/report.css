@@ -1,0 +1,56 @@
+.reporte-container {
+  background: #fff;
+  border-radius: 1.5rem;
+  border: 1.5px solid #e0e3e7;
+  box-shadow: 0 4px 24px #1976d225, 0 1px 2px #1112;
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 60vh;
+  margin: 2rem 0 1rem 0;
+  font-family: 'Inter', 'Montserrat', Arial, sans-serif;
+  font-weight: 400;
+}
+
+.reporte-container h2, .reporte-container h3, .reporte-container h5 {
+  font-weight: 400;
+}
+.reporte-container strong {
+  font-weight: 600;
+}
+.reporte-container ul {
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 992px) {
+  .reporte-container {
+    min-height: 70vh;
+    aspect-ratio: unset;
+  }
+}
+.reporte-container table {
+  font-size: 0.98rem;
+  margin-bottom: 2rem;
+}
+.reporte-container th, .reporte-container td {
+  vertical-align: middle;
+}
+.reporte-container h2 {
+  font-size: 2.1rem;
+}
+.reporte-container h3 {
+  font-size: 1.3rem;
+  margin-top: 1.8rem;
+}
+.reporte-container h5 {
+  font-size: 1.1rem;
+  color: #1976d2;
+}
+
+.footer-only-center {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 1.5rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

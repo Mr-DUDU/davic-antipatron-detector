@@ -1,30 +1,110 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>DAVIC - Detectando...</title>
-</head>
-<body>
-    <h1>🔎 DAVIC está analizando tu proyecto...</h1>
-    <h2>Conexion EXISITOSA</h2>
-    <p><strong>Proyecto:</strong> {{ component_key }}</p>
-    <p><strong>Token:</strong> {{ token }}</p>
-    <p><strong>Lenguaje:</strong> {{ language }}</p>
-    <p><strong>BRUTOS:</strong> {{ data }}</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detectando...</title>
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='favicon.png') }}"
+    />
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <!-- Header -->
+      <header class="d-flex align-items-center justify-content-between px-4">
+        <span class="app-title">D.A.V.I.C</span>
+      </header>
+      <!-- Main -->
+      <main>
+        <div class="container-fluid h-100">
+          <div class="row h-100 align-items-center">
+            <div class="col lateral-bg h-100 d-none d-md-flex"></div>
+            <div
+              class="col-12 col-md-5 h-100 d-flex justify-content-center align-items-center bg-white"
+            >
+              <div class="centro-card w-100 text-center">
+                <h2 class="mb-4 text-success">¡Conexión Exitosa!</h2>
+                <p class="lead mb-3">
+                  <strong>Proyecto:</strong> {{ component_key }}
+                </p>
+                <div class="d-flex justify-content-center mb-3">
+                  <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Analizando...</span>
+                  </div>
+                </div>
+                <p class="mb-3">
+                  Iniciando detección de antipatrones. Por favor espera...
+                </p>
+                <!-- Terminal hacker -->
+                <div
+                  id="hacker-terminal"
+                  class="terminal-hacker mx-auto mb-3 text-start"
+                ></div>
+                <!-- Formulario oculto para avanzar automáticamente -->
+                <form
+                  id="analizarForm"
+                  action="/analizar"
+                  method="POST"
+                  style="display: none"
+                >
+                  <input
+                    type="hidden"
+                    name="component_key"
+                    value="{{ component_key }}"
+                  />
+                  <input type="hidden" name="token" value="{{ token }}" />
+                  <input type="hidden" name="language" value="{{ language }}" />
+                </form>
+              </div>
+              <script>
+                // Contenido a mostrar tipo "hacker"
+                const hackerText = `{{ data|tojson|safe }}`;
+                const terminal = document.getElementById("hacker-terminal");
+                let i = 0;
+                const totalTime = 3000; // milisegundos totales
+                const delay = Math.max(1, totalTime / hackerText.length); // ms entre letras
 
-    <p>Esto es solo una simulación visual. En la siguiente etapa aparecerán los resultados.</p>
-    <form action="/analizar" method="POST">
-      <!-- Puedes ocultar o volver a mandar los mismos datos -->
-      <input type="hidden" name="component_key" value="{{ component_key }}">
-      <input type="hidden" name="token" value="{{ token }}">
-      <input type="hidden" name="language" value="{{ language }}">
-      <input type="hidden" name="data" value="{{ data }}">
-        <h2>¿Quieres ejecutar el análisis de antipatrones?</h2>
-        <p>Si estás listo, haz clic en el botón a continuación para continuar.</p>
-      >
-      <button type="submit">Ejecutar análisis de antipatrones</button>
-    </form>
+                function typeWriter() {
+                  if (i < hackerText.length) {
+                    terminal.textContent += hackerText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, delay);
+                  }
+                }
+                typeWriter();
 
-    <a href="/">⬅ Volver al inicio</a>
-</body>
+                // Envía el form justo a los 3 segundos
+                setTimeout(function () {
+                  document.getElementById("analizarForm").submit();
+                }, totalTime);
+              </script>
+            </div>
+            <div class="col lateral-bg h-100 d-none d-md-flex"></div>
+          </div>
+        </div>
+      </main>
+      <!-- Footer -->
+      <footer class="d-flex align-items-center justify-content-center">
+        <span class="text-muted small"
+          >© 2025 DAVIC - Desarrollado por David Averos</span
+        >
+      </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

@@ -1,9 +1,10 @@
+from core.reporter import generar_reporte_xml
 from flask import Flask, render_template, request
 from core.api_importer import obtener_code_smells
-from core.reporter import generar_reporte_xml
 from core.translator import cargar_diccionario_equivalencias, traducir_code_smells
+
 from core.analyzer import analizar_antipatrones
-import os
+import os, re
 
 # app.py
 RUTA_CSV_EQUIVALENCIAS = "data/code_smells_translation.csv"
@@ -29,10 +30,6 @@ def api_importer():
     except Exception as e:
         return render_template("index.html", mensaje=str(e))
 
-from flask import Flask, render_template, request
-from core.api_importer import obtener_code_smells
-from core.translator import cargar_diccionario_equivalencias, traducir_code_smells
-
 @app.route("/analizar", methods=["POST"])
 def analizar():
     try:
@@ -53,13 +50,17 @@ def analizar():
         resultado = analizar_antipatrones(moha_set)
 
         # Generar el XML en una ruta dentro de /static/reports
-        nombre_archivo = "reporte_demo.xml"
+        # Sanear el component_key para evitar caracteres no válidos en nombres de archivos
+        nombre_sanitizado = re.sub(r'[^\w\-_.]', '_', component_key)
+        # Usarlo para generar el nombre del archivo
+        nombre_archivo = f"{nombre_sanitizado}_detectado_antipatrones.xml"
         ruta_xml = os.path.join("static", "reports", nombre_archivo)
         generar_reporte_xml(resultado, trazabilidad, ruta_xml)
 
         return render_template(
             "reporte_generado.html",
             lenguaje=language,
+            component_key=component_key,
             moha_set=moha_set,
             trazabilidad=trazabilidad,
             resultado=resultado,

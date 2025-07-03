@@ -5,7 +5,7 @@ DAVIC es una herramienta semiautomatizada basada en Django y Python que permite 
 ## 🔧 Tecnologías utilizadas
 
 - Python 3.13
-- Django
+- Flask
 - Pytest + pytest-django
 - SonarQube Cloud API
 - Estructura modular basada en `api_importer`, `translator`, `analyzer`, `reporter`

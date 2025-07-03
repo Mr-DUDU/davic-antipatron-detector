@@ -1,33 +1,128 @@
-<h2>📊 Resultado del análisis de antipatrones</h2>
-
-<p><strong>Lenguaje:</strong> {{ resultado.lenguaje }}</p>
-
-<h3>✅ Antipatrones detectados:</h3>
-<ul>
-  {% for atp in resultado.detectados %}
-    <li>{{ atp }}</li>
-  {% else %}
-    <li>Ninguno</li>
-  {% endfor %}
-</ul>
-
-<h3>⚠️ Posibles antipatrones:</h3>
-<ul>
-  {% for atp in resultado.posibles %}
-    <li>{{ atp }}</li>
-  {% else %}
-    <li>Ninguno</li>
-  {% endfor %}
-</ul>
-
-<h3>🔍 Code smells aislados (sin relación directa):</h3>
-<ul>
-  {% for cs in resultado.aislados %}
-    <li>{{ cs }}</li>
-  {% else %}
-    <li>Ninguno</li>
-  {% endfor %}
-</ul>
-
-<h2>📥 Descargar reporte XML</h2>
-<a href="{{ url_for('static', filename='reports/reporte_demo.xml') }}" download>Descargar reporte_demo.xml</a>
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Depuración reporte - DAVIC</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/report.css') }}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='favicon.png') }}"
+    />
+  </head>
+  <body>
+    <main>
+      <div class="container-fluid h-100">
+        <div class="row h-100 justify-content-center align-items-start">
+          <div class="col lateral-bg h-100 d-none d-md-flex"></div>
+          <div
+            class="col-12 col-md-9 d-flex flex-column align-items-center justify-content-start bg-white"
+          >
+            <div class="reporte-container">
+              <h2>Reporte de Análisis de Antipatrones</h2>
+              <p>
+                Este informe presenta el análisis automático de antipatrones y
+                code smells realizado sobre el proyecto
+                <strong>{{component_key}}</strong> en
+                <strong>{{ lenguaje }}</strong>.
+              </p>
+              {% if resultado.detectados %}
+              <h3>Antipatrones Detectados</h3>
+              <ul>
+                {% for nombre in resultado.detectados %}
+                <li>
+                  <strong>{{ nombre }}</strong>
+                  <ul>
+                    <li>
+                      Code smells asociados:
+                      <ul>
+                        {% for item in trazabilidad if item.moha_equivalent in
+                        moha_set and item.moha_equivalent in nombre %}
+                        <li>
+                          <a href="{{ item.url }}"
+                            >{{ item.moha_equivalent }}</a
+                          >
+                          - {{ item.archivo }}:{{ item.linea }} ({{
+                          item.severity }})
+                        </li>
+                        {% endfor %}
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                {% endfor %}
+              </ul>
+              {% endif %} {% if not resultado.detectados and trazabilidad %}
+              <h3>Code smells detectados (no asociados a antipatrones)</h3>
+              <ul>
+                {% for item in trazabilidad %}
+                <li>
+                  <a href="{{ item.url }}">{{ item.moha_equivalent }}</a> - {{
+                  item.archivo }}:{{ item.linea }} ({{ item.severity }})
+                </li>
+                {% endfor %}
+              </ul>
+              {% endif %} {% if not resultado.detectados and not trazabilidad %}
+              <div class="alert alert-success">
+                <strong>¡Proyecto limpio!</strong> No se detectaron antipatrones
+                ni code smells relevantes.
+              </div>
+              {% endif %}
+              <h3>Detalle de Code Smells y Trazabilidad</h3>
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th>Archivo</th>
+                    <th>Línea</th>
+                    <th>Regla</th>
+                    <th>Moha Equivalent</th>
+                    <th>Severidad</th>
+                    <th>Ver en SonarCloud</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for item in trazabilidad %}
+                  <tr>
+                    <td>{{ item.archivo }}</td>
+                    <td>{{ item.linea }}</td>
+                    <td>{{ item.rule }}</td>
+                    <td>{{ item.moha_equivalent }}</td>
+                    <td>{{ item.severity }}</td>
+                    <td><a href="{{ item.url }}" target="_blank">Ver</a></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <h3>Descargar reporte estructurado</h3>
+              <a
+                class="btn btn-outline-primary"
+                href="{{ url_for('static', filename='reports/reporte_demo.xml') }}"
+                download
+              >
+                Descargar reporte_demo.xml
+              </a>
+            </div>
+          </div>
+          <div class="col lateral-bg h-100 d-none d-md-flex"></div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer-only-center">
+      <span class="text-muted small"
+        >© 2025 DAVIC - Desarrollado por David Averos</span
+      >
+    </footer>
+  </body>
+</html>

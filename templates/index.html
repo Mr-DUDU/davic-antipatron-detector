@@ -48,12 +48,6 @@
             >
               <div class="centro-card w-100">
                 <h2 class="mb-3 text-center">Bienvenido a DAVIC</h2>
-                <p class="lead text-center">
-                  Plataforma de análisis y detección de antipatrones en
-                  proyectos académicos.<br />
-                  Selecciona una opción en el menú para empezar.
-                </p>
-
                 <form
                   action="/api_importer"
                   method="POST"
@@ -68,21 +62,22 @@
                       id="component"
                       name="component_key"
                       class="form-control"
+                      placeholder="NombreGitHub_NombreDelProyecto"
                       required
                     />
                   </div>
 
                   <div class="mb-3">
-                    <label for="token" class="form-label"
-                      >🔑 Token de Autorización:</label
-                    >
+                    <label for="token" class="form-label">🔑 Token de Autorización:</label>
                     <input
-                      type="text"
+                      type="password"
                       id="token"
                       name="token"
                       class="form-control"
                       required
                     />
+                    <span id="tokenHelp" class="form-text">
+                    </span>
                   </div>
 
                   <div class="mb-3">
