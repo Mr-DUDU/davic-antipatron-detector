@@ -1,4 +1,4 @@
-from core.reporter import generar_reporte_xml
+from core.reporter import generar_reporte
 from flask import Flask, render_template, request
 from core.api_importer import obtener_code_smells
 from core.translator import cargar_diccionario_equivalencias, traducir_code_smells
@@ -37,25 +37,18 @@ def analizar():
         token = request.form["token"]
         language = request.form["language"]
 
-        # Volvemos a obtener los code smells (deberían venir cacheados en produccion)
         sqc_data = obtener_code_smells(component_key, token)
-
-        # Cargar equivalencias Moha
         equivalencias = cargar_diccionario_equivalencias(RUTA_CSV_EQUIVALENCIAS)
-
-        # Feature 2: Traduccion
         moha_set, trazabilidad = traducir_code_smells(sqc_data, equivalencias)
-
-        # Paso 3: Análisis de antipatrones (Feature 3)
         resultado = analizar_antipatrones(moha_set)
 
-        # Generar el XML en una ruta dentro de /static/reports
-        # Sanear el component_key para evitar caracteres no válidos en nombres de archivos
+        # Generar XML y la estructura de datos
         nombre_sanitizado = re.sub(r'[^\w\-_.]', '_', component_key)
-        # Usarlo para generar el nombre del archivo
         nombre_archivo = f"{nombre_sanitizado}_detectado_antipatrones.xml"
         ruta_xml = os.path.join("static", "reports", nombre_archivo)
-        generar_reporte_xml(resultado, trazabilidad, ruta_xml)
+
+        # Genera XML y datos
+        antipatrones_estructura = generar_reporte(resultado, trazabilidad, ruta_xml, component_key)
 
         return render_template(
             "reporte_generado.html",
@@ -64,7 +57,8 @@ def analizar():
             moha_set=moha_set,
             trazabilidad=trazabilidad,
             resultado=resultado,
-            ruta_xml=ruta_xml
+            ruta_xml=ruta_xml,
+            antipatrones_estructura=antipatrones_estructura  # Pasa la estructura para el reporte HTML
         )
 
     except Exception as e:
